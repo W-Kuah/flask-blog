@@ -1,3 +1,5 @@
+// Implement the mode/view/controller framework
+
 // Create the namespace instance
 let ns = {};
 

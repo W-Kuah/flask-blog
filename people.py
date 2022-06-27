@@ -1,7 +1,7 @@
-# System modules
+# Add system modules for date & time
 from datetime import datetime
 
-# 3rd party modules
+# Add third party modules
 from flask import make_response, abort
 
 
@@ -36,7 +36,7 @@ def read_all():
 
     :return:        json string of list of people
     """
-    # Create the list of people from our data
+    # Create the list of people from the data
     return [PEOPLE[key] for key in sorted(PEOPLE.keys())]
 
 
@@ -48,11 +48,9 @@ def read_one(lname):
     :param lname:   last name of person to find
     :return:        person matching last name
     """
-    # Does the person exist in people?
+    # Check if the person exist in people
     if lname in PEOPLE:
         person = PEOPLE.get(lname)
-
-    # otherwise, nope, not found
     else:
         abort(
             404, "Person with last name {lname} not found".format(lname=lname)
@@ -72,7 +70,7 @@ def create(person):
     lname = person.get("lname", None)
     fname = person.get("fname", None)
 
-    # Does the person exist already?
+    # Check if the person exists already
     if lname not in PEOPLE and lname is not None:
         PEOPLE[lname] = {
             "lname": lname,
@@ -83,7 +81,7 @@ def create(person):
             "{lname} successfully created".format(lname=lname), 201
         )
 
-    # Otherwise, they exist, that's an error
+    # If they exist, display an error!
     else:
         abort(
             406,
@@ -99,14 +97,14 @@ def update(lname, person):
     :param person:  person to update
     :return:        updated person structure
     """
-    # Does the person exist in people?
+    # Check if the person exist in people
     if lname in PEOPLE:
         PEOPLE[lname]["fname"] = person.get("fname")
         PEOPLE[lname]["timestamp"] = get_timestamp()
 
         return PEOPLE[lname]
 
-    # otherwise, nope, that's an error
+    # If they exist, display an error!
     else:
         abort(
             404, "Person with last name {lname} not found".format(lname=lname)
@@ -120,14 +118,14 @@ def delete(lname):
     :param lname:   last name of person to delete
     :return:        200 on successful delete, 404 if not found
     """
-    # Does the person to delete exist?
+    # Check if the person to delete exists
     if lname in PEOPLE:
         del PEOPLE[lname]
         return make_response(
             "{lname} successfully deleted".format(lname=lname), 200
         )
 
-    # Otherwise, nope, person to delete not found
+    # If the person to delete is not found, display an error!
     else:
         abort(
             404, "Person with last name {lname} not found".format(lname=lname)
