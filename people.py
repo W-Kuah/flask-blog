@@ -167,7 +167,7 @@ def delete(person_id):
             "Person not found for Id: {person_id}".format(person_id=person_id),
         )
 
-p2 = Person.query.filter(Person.person_id == 2).one_or_none()
-print(Person.query)
+#p2 = Person.query.filter(Person.person_id == 2).one_or_none()
+#print(Person.query)
 #db.session.delete(p2)
 #db.session.commit()

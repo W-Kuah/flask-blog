@@ -15,7 +15,9 @@
     <div class="container">
         <h1 class="banner">People Demo Application</h1>
         <div class="section editor">
-            <input id="person_id" type="hidden" value="" />
+            <label for="person_id">Person ID
+                <input id="person_id" type="text" value="" />
+            </label>
             <label for="fname">First Name
                 <input id="fname" type="text" />
             </label>
@@ -33,7 +35,8 @@
             <table>
                 <caption>People</caption>
                 <thead>
-                    <tr>
+                    <tr> 
+                        <th>Person ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Update Time</th>

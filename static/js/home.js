@@ -1,6 +1,9 @@
 /*
  * JavaScript file for the application to demonstrate
  * using the API
+ * Model - interface that communicates with the database to handle business logic
+ * Controller - function to handle requests from the front end and communicates to the model to handle logic
+ * View - is the UI which is the HTML page
  */
 
 // Create the namespace instance
@@ -111,6 +114,7 @@ ns.view = (function() {
             if (people) {
                 for (let i=0, l=people.length; i < l; i++) {
                     rows += `<tr data-person-id="${people[i].person_id}">
+                        <td class="person_id">${people[i].person_id}</td>
                         <td class="fname">${people[i].fname}</td>
                         <td class="lname">${people[i].lname}</td>
                         <td>${people[i].timestamp}</td>
@@ -212,7 +216,8 @@ ns.controller = (function(m, v) {
 
         person_id = $target
             .parent()
-            .attr('data-person-id');
+            .attr('data-person-id')
+            .text();
 
         fname = $target
             .parent()
